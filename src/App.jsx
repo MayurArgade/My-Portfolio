@@ -6,7 +6,7 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
-import Projects from './components/project';
+import Projects from './components/Project';
 import Sidebar from './components/Sidebar';
 
 function App() {
