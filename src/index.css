@@ -163,33 +163,27 @@ footer a:hover svg {
   flex-direction: column;
   gap: 20px;
   z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.floating-sidebar a {
-  color: var(--text);
-  font-size: 1.6rem;
-  transition: transform 0.3s;
-}
-
-.floating-sidebar a:hover {
-  transform: scale(1.2);
-  color: var(--accent);
-}
+/* Smooth hide/show */
 .floating-sidebar.hidden {
   opacity: 0;
   transform: translateY(-50%) translateX(-50px);
   pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .floating-sidebar.visible {
   opacity: 1;
   transform: translateY(-50%) translateX(0);
-  transition: opacity 0.4s ease, transform 0.4s ease;
 }
+
 @media (max-width: 600px) {
   .floating-sidebar {
-    display: none;
+    left: 10px;
+    top: 40%;
+    font-size: 1.3rem;
   }
 }
 /* --- Contact Section Styling --- */
