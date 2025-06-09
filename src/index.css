@@ -104,8 +104,7 @@ footer a {
   color: var(--accent);
   margin: 0 8px;
 }
-//Navbar
-/* Basic layout */
+/* Navbar Basic layout */
 .navbar {
   display: flex;
   justify-content: space-between;
