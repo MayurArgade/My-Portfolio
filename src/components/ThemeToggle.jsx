@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/themeToggle.css'; // move inline styles here
+import '../styles/themeToggle.css';
 
 const ThemeToggle = ({ toggleTheme, dark }) => {
   return (
