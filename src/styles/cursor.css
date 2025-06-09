@@ -15,10 +15,8 @@ body, * {
   background: var(--accent);
 }
 
-/* Optional: Adjust size for mobile */
 @media (max-width: 768px) {
   .custom-cursor {
-    width: 15px;
-    height: 15px;
+    display: none;
   }
 }
