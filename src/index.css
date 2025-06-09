@@ -175,6 +175,18 @@ footer a:hover svg {
   transform: scale(1.2);
   color: var(--accent);
 }
+.floating-sidebar.hidden {
+  opacity: 0;
+  transform: translateY(-50%) translateX(-50px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.floating-sidebar.visible {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
 /* --- Contact Section Styling --- */
 #contact {
   padding: 100px 20px;
