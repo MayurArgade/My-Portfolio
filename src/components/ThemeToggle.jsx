@@ -1,20 +1,11 @@
 import React from 'react';
+import './styles/themeToggle.css'; // move inline styles here
 
 const ThemeToggle = ({ toggleTheme, dark }) => {
   return (
     <button
       onClick={toggleTheme}
-      style={{
-        position: 'fixed',
-        top: '15px',
-        right: '20px',
-        background: 'none',
-        border: '1px solid #aaa',
-        padding: '8px 14px',
-        borderRadius: '20px',
-        cursor: 'pointer',
-        zIndex: 1000,
-      }}
+      className="theme-toggle"
     >
       {dark ? '🌙 Dark' : '☀️ Light'}
     </button>
