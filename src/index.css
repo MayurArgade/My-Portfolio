@@ -104,7 +104,86 @@ footer a {
   color: var(--accent);
   margin: 0 8px;
 }
+//Navbar
+/* Basic layout */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: var(--background);
+  color: var(--text);
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
 
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Navigation links */
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.navbar-links a {
+  color: var(--text);
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+
+.navbar-links a.nav-active {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Hamburger toggle */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.navbar-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text);
+  transition: 0.4s;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: var(--background);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+    width: 200px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .navbar-links.active {
+    transform: translateX(0);
+  }
+
+  .navbar-links li {
+    margin: 10px 0;
+  }
+}
 nav {
   position: sticky;
   top: 0;
