@@ -1,0 +1,32 @@
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: 1px solid #aaa;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  background-color: var(--bg);
+  color: var(--text);
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* On hover */
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Mobile: move it to bottom-right */
+@media (max-width: 768px) {
+  .theme-toggle {
+    top: auto;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+}
