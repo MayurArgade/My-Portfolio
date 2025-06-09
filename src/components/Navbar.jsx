@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Navbar = () => {
   const [active, setActive] = useState('');
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const sections = document.querySelectorAll('section');
@@ -21,20 +22,35 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <nav>
-      <ul>
-        {['hero', 'about', 'projects', 'skills', 'contact'].map((id) => (
-          <li key={id}>
-            <a
-              href={`#${id}`}
-              className={active === id ? 'nav-active' : ''}
-            >
-              {id.toUpperCase()}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className="nav-container">
+        <div className="nav-logo">MAYUR</div>
+
+        <div className="hamburger" onClick={toggleMenu}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+          {['hero', 'about', 'projects', 'skills', 'contact'].map((id) => (
+            <li key={id}>
+              <a
+                href={`#${id}`}
+                className={active === id ? 'nav-active' : ''}
+                onClick={() => setMenuOpen(false)} // Close on click
+              >
+                {id.toUpperCase()}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </nav>
   );
 };
