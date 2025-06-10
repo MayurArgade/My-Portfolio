@@ -19,8 +19,10 @@ body {
   background-color: var(--bg);
   color: var(--text);
   transition: background 0.3s ease, color 0.3s ease;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
   cursor: none;
-
+  scroll-behavior: smooth;
+  line-height: 1.6;
 }
 
 * {
@@ -29,17 +31,33 @@ body {
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  scroll-behavior: smooth;
-  line-height: 1.6;
-}
-
 a {
   text-decoration: none;
   color: var(--text);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 section {
@@ -60,7 +78,9 @@ ul {
 }
 
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+form input,
+form textarea {
   display: block;
   width: 100%;
   font-size: 1rem;
@@ -68,24 +88,73 @@ ul {
   margin-bottom: 15px;
   border: 1px solid var(--border);
   border-radius: 4px;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
 }
 
-.contact-form button {
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: #888;
+}
+
+.contact-form button,
+form button {
   background: var(--accent);
   color: #fff;
   padding: 12px 20px;
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.contact-form button:hover {
-  background: #d62c2a;
+form button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent);
+}
+
+body.dark form button {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+body.dark form button:hover {
+  box-shadow: 0 0 20px var(--accent);
+}
+
+form button:disabled {
+  background: #666;
+  color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+.form-error {
+  color: var(--accent);
+  font-size: 0.9rem;
+  text-align: left;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 .thank-you-msg {
   font-size: 1.2rem;
-  color: green;
+  color: limegreen;
   animation: fadein 1s ease-in;
 }
 
@@ -104,8 +173,17 @@ footer a {
   color: var(--accent);
   margin: 0 8px;
 }
-/* Navbar Basic layout */
-/* Base styles (keep your original ones) */
+
+footer a svg {
+  transition: transform 0.3s ease;
+}
+
+footer a:hover svg {
+  transform: scale(1.2);
+  color: var(--accent);
+}
+
+/* Navbar */
 nav {
   position: sticky;
   top: 0;
@@ -130,7 +208,6 @@ nav {
   color: var(--accent);
 }
 
-/* Nav links */
 .nav-links {
   display: flex;
   list-style: none;
@@ -147,9 +224,10 @@ nav {
 .nav-links a:hover,
 .nav-links a.nav-active {
   color: var(--accent);
+  font-weight: bold;
+  border-bottom: 2px solid var(--accent);
 }
 
-/* Hamburger (mobile only) */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -164,7 +242,6 @@ nav {
   transition: 0.3s;
 }
 
-/* Mobile styles */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -197,15 +274,7 @@ nav {
   }
 }
 
-
-footer a svg {
-  transition: transform 0.3s ease;
-}
-
-footer a:hover svg {
-  transform: scale(1.2);
-  color: var(--accent);
-}
+/* Skills Section */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -223,6 +292,8 @@ footer a:hover svg {
   font-size: 1.5rem;
   margin-right: 8px;
 }
+
+/* Floating Sidebar */
 .floating-sidebar {
   position: fixed;
   top: 50%;
@@ -236,7 +307,6 @@ footer a:hover svg {
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Smooth hide/show */
 .floating-sidebar.hidden {
   opacity: 0;
   transform: translateY(-50%) translateX(-50px);
@@ -255,166 +325,7 @@ footer a:hover svg {
     font-size: 1.3rem;
   }
 }
-/* --- Contact Section Styling --- */
-#contact {
-  padding: 100px 20px;
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-  background: linear-gradient(to bottom right, #fffdfd, #f8f8f8);
-  border-radius: 10px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.05);
-  transition: background 0.3s ease;
-}
 
-/* DARK MODE: contact background */
-body.dark #contact {
-  background: linear-gradient(to bottom right, #1a1a1a, #111111);
-}
-
-/* --- Heading --- */
-#contact h2 {
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-  border-left: 5px solid var(--accent);
-  padding-left: 10px;
-  display: inline-block;
-}
-
-/* --- Form Layout --- */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 30px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(6px);
-  border: 1px solid var(--border);
-}
-
-/* --- Inputs & Textarea --- */
-form input,
-form textarea {
-  font-family: 'Zen Kaku Gothic New', sans-serif;
-  font-size: 1rem;
-  padding: 15px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background-color: var(--bg);
-  color: var(--text);
-  transition: 0.3s;
-}
-
-form input:focus,
-form textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
-}
-
-form input::placeholder,
-form textarea::placeholder {
-  color: #888;
-}
-
-/* --- Submit Button --- */
-form button {
-  padding: 14px 30px;
-  border: none;
-  border-radius: 8px;
-  background: var(--accent);
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-form button:hover {
-  background: var(--accent);
-  transform: translateY(-2px);
-  box-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent);
-}
-
-/* --- DARK MODE Button --- */
-body.dark form button {
-  background: rgba(0, 0, 0, 0.2);
-backdrop-filter: blur(10px);
-  color: #fff;
-  box-shadow: 0 0 10px var(--accent);
-}
-
-body.dark form button:hover {
-  box-shadow: 0 0 20px var(--accent);
-}
-
-/* --- Disabled Button --- */
-form button:disabled {
-  background: #666;
-  color: #ccc;
-  cursor: not-allowed;
-  opacity: 0.6;
-  box-shadow: none;
-}
-
-/* --- Validation Message --- */
-.form-error {
-  color: var(--accent);
-  font-size: 0.9rem;
-  text-align: left;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
-
-/* --- Thank You Message --- */
-.thank-you-msg {
-  color: limegreen;
-  animation: fadein 1s ease-in;
-}
-
-@keyframes fadein {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-a {
-  color: var(--text);
-  position: relative;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--accent);
-}
-
-/* Fancy underline on hover (like anime UI) */
-a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 100%;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s ease;
-}
-
-a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-nav a {
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-nav a:hover {
-  transform: scale(1.1);
-  color: var(--accent);
-}
 .floating-sidebar a {
   transition: transform 0.3s ease, color 0.3s ease;
 }
@@ -424,27 +335,31 @@ nav a:hover {
   color: var(--accent);
   text-shadow: 0 0 10px var(--accent);
 }
-form button:hover {
-  box-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent);
+
+/* Contact Section */
+#contact {
+  padding: 100px 20px;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  background: linear-gradient(to bottom right, var(--bg), #f8f8f8);
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.05);
+  transition: background 0.3s ease;
 }
-.custom-cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--accent);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease;
-  mix-blend-mode: difference;
-  background: var(--accent);
+
+body.dark #contact {
+  background: linear-gradient(to bottom right, #1a1a1a, #111111);
 }
-nav a.nav-active {
-  color: var(--accent);
-  font-weight: bold;
-  border-bottom: 2px solid var(--accent);
+
+/* Hero Section */
+.hero-section {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Project Cards */
 .project-card {
   padding: 15px 20px;
   border: 1px solid var(--border);
@@ -463,16 +378,20 @@ nav a.nav-active {
 body.dark .project-card {
   background: rgba(255, 255, 255, 0.02);
 }
-/* Default light mode */
-.hero-section {
-  background-color: white;
-  color: #111; /* fallback text color */
-  transition: background-color 0.3s ease, color 0.3s ease;
+
+/* Custom Cursor */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  mix-blend-mode: difference;
+  background: var(--accent);
 }
 
-/* Dark mode background & text */
-.dark-mode .hero-section {
-  background-color: #1a202c; /* dark background */
-  color: #eee; /* light text */
-}
 
