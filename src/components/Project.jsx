@@ -17,9 +17,9 @@ const projects = [
     link: "https://mayurargade.github.io/To-Do-List/",
   },
   {
-    title: "Responsive Website",
-    tech: "Bootstrap",
-    link: "https://mayurargade.github.io/bootstrap-/",
+    title: "Flash Card",
+    tech: "React js",
+    link: "https://mayurargade.github.io/Flashcard/",
   },
   {
     title: "E-Commerce Website",
