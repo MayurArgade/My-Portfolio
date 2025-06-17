@@ -25,7 +25,9 @@ const Hero = ({ darkMode }) => {
         <h1 className={`text-4xl md:text-6xl font-semibold tracking-tight leading-tight`}>
           こんにちは、<span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>私は Mayur</span> です。
         </h1>
-
+       <h1 className={`text-2l md:text-2l font-mid tracking-tight leading-tight`}>
+          I build animated <span className={darkMode ? 'text-gray-300' : 'text-gray-400'}>scroll-triggered landing pages using React + Gsap</span> that make your brand look premium.
+        </h1>
         <p className={`mt-6 text-xl md:text-2xl min-h-[2.5rem] transition-all ${
           darkMode ? 'text-gray-400' : 'text-gray-500'
         }`}>
